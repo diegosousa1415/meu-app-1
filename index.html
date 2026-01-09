@@ -2,50 +2,129 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Rádio Lo-Fi Relax</title>
+  <title>Minha IA + Vídeos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      margin: 0;
+    }
+    header {
+      background: #020617;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background: #020617;
+      padding: 10px;
+    }
+    nav button {
+      background: #38bdf8;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .section {
+      display: none;
+      padding: 15px;
+    }
+    .active {
+      display: block;
+    }
+    .chat {
+      height: 60vh;
+      overflow-y: auto;
+    }
+    .msg {
+      margin-bottom: 10px;
+    }
+    .user {
+      text-align: right;
+      color: #38bdf8;
+    }
+    .bot {
+      text-align: left;
+      color: #a7f3d0;
+    }
+    footer {
+      display: flex;
+      padding: 10px;
+      background: #020617;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>🎧 Rádio Lo-Fi Relax</h1>
+<header>🤖 Minha IA + 🎥 Vídeos</header>
 
-<p>
-Rádio online com músicas lo-fi para relaxar, estudar, trabalhar e dormir.
-Ideal para quem busca foco, tranquilidade e um som ambiente agradável.
-</p>
+<nav>
+  <button onclick="mostrar('ia')">IA</button>
+  <button onclick="mostrar('videos')">Vídeos</button>
+</nav>
 
-<h2>Sobre</h2>
-<p>
-A Rádio Lo-Fi Relax foi criada para oferecer música contínua e relaxante
-para ajudar no foco, concentração e bem-estar.
-Funciona diretamente no navegador, sem necessidade de instalar aplicativos.
-</p>
+<!-- SEÇÃO IA -->
+<div id="ia" class="section active">
+  <div class="chat" id="chat">
+    <div class="msg bot">Olá 👋 Eu sou sua IA. Pergunte algo!</div>
+  </div>
 
-<h2>Como usar</h2>
-<ul>
-  <li>Aperter cu de ariel pra ouvir o som kkakkaka</li>
-  <li>Funciona no celular e computador</li>
-  <li>Pode ser adicionado à tela inicial como aplicativo</li>
-</ul>
+  <footer>
+    <input type="text" id="input" placeholder="Digite sua pergunta...">
+    <button onclick="enviar()">Enviar</button>
+  </footer>
+</div>
 
-<h2>Ouça agora</h2>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/jfKfPfyJRdk"
-title="Lo-fi Radio"
-frameborder="0"
-allow="autoplay; encrypted-media"
-allowfullscreen>
-</iframe>
+<!-- SEÇÃO VÍDEOS -->
+<div id="videos" class="section">
+  <h2>🎬 Vídeos Recomendados</h2>
 
-<h2>Política de Privacidade</h2>
-<p>
-Este site utiliza serviços de terceiros, incluindo o Google AdSense,
-que podem usar cookies para exibir anúncios relevantes aos usuários.
-Não coletamos informações pessoais diretamente.
-</p>
+  <!-- TROQUE OS IDS DOS VÍDEOS -->
+  <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/DWcJFNfaw9c" allowfullscreen></iframe>
 
-<footer>
-<p>© 2026 Rádio Lo-Fi Relax feito por digplay</p>
-</footer>
+</div>
 
-</body>
-</html>
+<script>
+  function mostrar(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function enviar() {
+    const input = document.getElementById("input");
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    addMsg(texto, "user");
+    input.value = "";
+
+    setTimeout(() => {
+      addMsg(responder(texto), "bot");
+    }, 500);
+  }
+
+  function addMsg(texto, tipo) {
+    const chat = document.getEle
